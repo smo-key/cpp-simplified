@@ -4,9 +4,8 @@ using namespace cppsimp;
 
 int main()
 {
-	char** a = new char*;
+	int k = read<int>();
 
-	cout << "Press any key to continue...";
 	pause();
 	return 0;
 }
