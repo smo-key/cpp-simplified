@@ -1,0 +1,11 @@
+9
+  P  L  G  G  A  L  L  A  L 59
+  P  A  G  P  P  L  A  P  P 68
+  L  P  P  P  P  A  A  G  A 64
+  A  L  G  A  A  A  L  L  P 56
+  G  G  A  P  G  L  L  A  G 57
+  A  L  A  A  G  G  P  L  P 59
+  G  A  A  L  P  G  P  A  P 61
+  A  G  A  L  G  A  G  P  G 55
+  A  G  A  P  A  A  A  L  P 56
+ 57 58 52 66 60 53 60 60 69

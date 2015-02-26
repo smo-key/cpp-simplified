@@ -1,0 +1,10 @@
+9
+R N Y
+L H B
+E R L
+N U .
+Y C P
+H I G
+B A .
+P O .
+A . T

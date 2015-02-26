@@ -1,0 +1,8 @@
+6
+  C  P  C  D  G  C 25
+  P  C  P  D  F  O 37
+  O  C  O  D  C  O 31
+  D  D  F  D  O  C 25
+  O  O  P  O  O  D 44
+  F  G  D  O  C  G 33
+ 36 31 37 28 33 30

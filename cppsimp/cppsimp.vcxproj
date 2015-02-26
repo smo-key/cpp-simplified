@@ -11,7 +11,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="cppsimp.cpp" />
+    <ClCompile Include="general.cpp" />
+    <ClCompile Include="reader.cpp" />
+    <ClCompile Include="string.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cppsimp.h" />

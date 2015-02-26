@@ -1,0 +1,6 @@
+200 milliamps
+320 milliamps
+305 milliamps
+185 milliamps
+110 milliamps
+245 milliamps

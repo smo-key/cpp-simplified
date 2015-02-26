@@ -1,0 +1,1 @@
+bin\Release\hpcodewars17.exe < datasets\prob01-1-in.txt
