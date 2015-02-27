@@ -6,7 +6,7 @@
 
 int main()
 {
-	p7();
+	p8();
 
 	pause();
 	return 0;
@@ -31,7 +31,7 @@ int p1_formula(int t)
 	return 100 * sqrt(t) + 201 / (t + 1) + 1;
 }
 
-//NOT COMPLETE
+//TODO NOT COMPLETE
 void p2()
 {
 	reader in("datasets/prob02-1-in.txt");
@@ -158,6 +158,7 @@ void p6()
 	}
 }
 
+//TODO not complete
 void p7()
 {
 	int n[6] = { 1, 5, 10, 100, 1000, 10000 };
@@ -173,6 +174,29 @@ void p7()
 			//number -> roman
 			int k = stoi(s);
 			
+		}
+		else
+		{
+
+		}
+	}
+}
+
+void p8() 
+{
+	reader in("datasets/prob08-1-in.txt");
+	while (!in.iseof())
+	{
+		int c = in.read<int>();
+		if (c == 0) { return; }
+		vector<string> v = vector<string>();
+		while (true)
+		{
+			string s = in.read<string>();
+			if (s == "$") {
+				cout << v.at(v.size() - c) << endl; break;
+			}
+			v.push_back(s);
 		}
 	}
 }

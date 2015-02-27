@@ -21,7 +21,20 @@ namespace cppsimp
 	//general functions
 	void pause();
 	bool fileExists(const char* filename);
-	static string itos(int s);
+	template <typename T>
+	static string itos(T Number)
+	{
+		ostringstream ss;
+		ss << Number;
+		return ss.str();
+	}
+	template <typename T>
+	T stoi(const string &Text)
+	{
+		istringstream ss(Text);
+		T result;
+		return ss >> result ? result : 0;
+	}
 
 	//standard in/out
 	class io;
@@ -165,20 +178,11 @@ public:
 		return x;
 	}
 
-	string readline()
-	{
-		string line;
-		getline(*in, line);
-		return line;
-	}
-
-	char* readuntil(char ch)
-	{
-		//TODO implement
-	}
-
+	string readline();
+	char* readuntil(char ch); //TODO implement
 	string readall();
 
+	//TODO implement
 	//istream& operator>> (streambuf* sb );
 
 	//TODO string to char* and char* to string

@@ -41,3 +41,10 @@ string reader::readall()
 	string str((istreambuf_iterator<char>(*is)), istreambuf_iterator<char>());
 	return str;
 }
+
+string reader::readline()
+{
+	string line;
+	getline(*in, line);
+	return line;
+}
