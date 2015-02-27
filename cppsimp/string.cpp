@@ -16,3 +16,22 @@ string& str::trimr(string &s) {
 string& str::trim(string &s) {
 	return triml(trimr(s));
 }
+
+vector<string> str::split(string s, string delim)
+{
+	vector<string> v = vector<string>();
+	size_t pos = 0;
+	string token;
+	while ((pos = s.find(delim)) != string::npos)
+	{
+		v.push_back(s.substr(0, pos));
+		s.erase(0, pos + delim.length());
+	}
+	v.push_back(s);
+	return v;
+}
+
+bool str::instring(string s, string test)
+{
+	return s.find(test) != string::npos;
+}

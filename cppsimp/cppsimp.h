@@ -7,15 +7,21 @@
 #include <functional> 
 #include <cctype>
 #include <locale>
+#include <vector>
+#include <regex>
 #include "stdio.h"
 
 using namespace std;
 
 namespace cppsimp
 {
+	//type definitions
+	typedef unsigned int uint;
+	
 	//general functions
 	void pause();
-	bool fileExists();
+	bool fileExists(const char* filename);
+	static string itos(int s);
 
 	//standard in/out
 	class io;
@@ -25,6 +31,9 @@ namespace cppsimp
 
 	//string functions
 	class str;
+
+	//array functions
+	class arr;
 
 	//Stardard Console IO
 	template<class T>
@@ -57,12 +66,77 @@ namespace cppsimp
 	}
 }
 
+class cppsimp::arr abstract
+{
+	//TODO countif
+};
+
 class cppsimp::str abstract
 {
 public:
-	static string& str::triml(string &s);
-	static string& str::trimr(string &s);
-	static string& str::trim(string &s);
+	static const char ASCII_space = 32;
+	static const char ASCII_0 = 48;
+	static const char ASCII_A = 65;
+	static const char ASCII_Z = ASCII_A + 25;
+	static const char ASCII_a = 97;
+	static const char ASCII_z = ASCII_a + 25;
+
+	static string& triml(string &s);
+	static string& trimr(string &s);
+	static string& trim(string &s);
+	static vector<string> split(string s, string delim);
+	static bool instring(string s, string test);
+
+	template<class T>
+	static string removeif(string s, T predicate)
+	{
+		s.erase(std::remove_if(s.begin(), s.end(), predicate), s.end());
+		return s;
+	}
+
+	template<typename ArgType, typename Pred>
+	static std::function<bool(ArgType)> invertpred(Pred &pred)
+	{
+		return [&pred](ArgType t)
+		{ return !pred((ArgType)t); };
+	}
+
+	template<class T>
+	static int countif(string s, T predicate)
+	{
+		return count_if(s.begin(), s.end(), predicate);
+	}
+
+	static bool doesmatch(string s, regex r)
+	{
+		return regex_match(s, r);
+	}
+	static bool isfound(string s, regex r)
+	{
+		return regex_search(s, r);
+	}
+	static string list(string s, regex r)
+	{
+		//TODO search string and return array containing list of results
+	}
+	static int count(string s, regex r)
+	{
+		//TODO search string and return matches
+	}
+	static string remove(string s, regex r)
+	{
+		return regex_replace(s, r, "");
+	}
+	static string replace(string s, regex r, string rep)
+	{
+		return regex_replace(s, r, rep);
+	}
+
+	//TODO replaceif
+	//TODO keepif
+	//TODO countif
+	//TODO regex match and replace methods
+	//TODO reverse
 };
 
 class cppsimp::reader
@@ -91,13 +165,11 @@ public:
 		return x;
 	}
 
-	char* readline()
+	string readline()
 	{
-		//TODO implement
-		char* x = 0;
-		istream* s = stream();
-		s->getline(x, 1);
-		return x;
+		string line;
+		getline(*in, line);
+		return line;
 	}
 
 	char* readuntil(char ch)
