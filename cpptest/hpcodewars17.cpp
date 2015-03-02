@@ -6,7 +6,7 @@
 
 int main()
 {
-	p8();
+	p10();
 
 	pause();
 	return 0;
@@ -199,4 +199,64 @@ void p8()
 			v.push_back(s);
 		}
 	}
+}
+
+void p9() {
+	reader in("datasets/prob09-1-in.txt");
+	vector<uint> primes = vector<uint>();
+	for (uint i = 3; i <= 1000; i++)
+	{
+		if (math::isprime(i)) { primes.push_back(i); }
+	}
+	while (!in.iseof())
+	{
+		int n = in.read<int>();
+		if (n == 0) { return; }
+		string solution = "";
+		int diff = INT_MAX;
+
+		for (int i = 0; i < primes.size(); i++)
+		{
+			for (int j = i; j < primes.size(); j++)
+			{
+				if ((primes[i] + primes[j] == n) && (abs((int)primes[i] - (int)primes[j]) < diff))
+				{
+					solution = ""; solution.append(itos(primes[i])).append(" + ").append(itos(primes[j])).append(" = ").append(itos(n)); diff = abs((int)primes[i] - (int)primes[j]);
+				}
+			}
+		}
+		cout << solution << endl;
+	}
+}
+
+void p10() 
+{
+	reader in("datasets/prob10-1-in.txt");
+	while (!in.iseof())
+	{
+		const int l = in.read<int>();
+		if (l == 0) { return; }
+		string str = str::trim(in.readline());
+		char* s = str::tochararray(str);
+		char* o = new char[l];
+		for (int i = 1; i < l; i++)
+		{
+			o[i] = '~';
+		}
+		o[0] = s[0];
+		int n = p10_getvalue(s[0]);
+		for (int i = 1; i < l; i++)
+		{
+			n = p10_getvalue(s[n]) % l;
+			o[i] = s[n + 1];
+		}
+		cout << o << endl;
+	}
+}
+int p10_getvalue(char c)
+{
+	int i = (int)c;
+	if ((i >= str::ASCII_A) && (i <= str::ASCII_Z)) { return i - str::ASCII_A + 1; }
+	if ((i >= str::ASCII_a) && (i <= str::ASCII_z)) { return i - str::ASCII_a + 1; }
+	return 1;
 }

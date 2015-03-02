@@ -17,6 +17,7 @@ void p7();
 void p8();
 void p9();
 void p10();
+int p10_getvalue(char c);
 void p11();
 void p12();
 void p13();

@@ -35,6 +35,12 @@ namespace cppsimp
 		T result;
 		return ss >> result ? result : 0;
 	}
+	template<typename ArgType, typename Pred>
+	static std::function<bool(ArgType)> invertpred(Pred &pred)
+	{
+		return [&pred](ArgType t)
+		{ return !pred((ArgType)t); };
+	}
 
 	//standard in/out
 	class io;
@@ -47,6 +53,9 @@ namespace cppsimp
 
 	//array functions
 	class arr;
+
+	//math operations
+	class math;
 
 	//Stardard Console IO
 	template<class T>
@@ -82,6 +91,13 @@ namespace cppsimp
 class cppsimp::arr abstract
 {
 	//TODO countif
+	//TODO find
+};
+
+class cppsimp::math abstract
+{
+public:
+	static bool isprime(unsigned int n);
 };
 
 class cppsimp::str abstract
@@ -100,50 +116,15 @@ public:
 	static vector<string> split(string s, string delim);
 	static bool instring(string s, string test);
 
-	template<class T>
-	static string removeif(string s, T predicate)
-	{
-		s.erase(std::remove_if(s.begin(), s.end(), predicate), s.end());
-		return s;
-	}
+	static bool doesmatch(string s, regex r);
+	static bool isfound(string s, regex r);
+	static string list(string s, regex r);
+	static int count(string s, regex r);
+	static string remove(string s, regex r);
+	static string replace(string s, regex r, string rep);
 
-	template<typename ArgType, typename Pred>
-	static std::function<bool(ArgType)> invertpred(Pred &pred)
-	{
-		return [&pred](ArgType t)
-		{ return !pred((ArgType)t); };
-	}
-
-	template<class T>
-	static int countif(string s, T predicate)
-	{
-		return count_if(s.begin(), s.end(), predicate);
-	}
-
-	static bool doesmatch(string s, regex r)
-	{
-		return regex_match(s, r);
-	}
-	static bool isfound(string s, regex r)
-	{
-		return regex_search(s, r);
-	}
-	static string list(string s, regex r)
-	{
-		//TODO search string and return array containing list of results
-	}
-	static int count(string s, regex r)
-	{
-		//TODO search string and return matches
-	}
-	static string remove(string s, regex r)
-	{
-		return regex_replace(s, r, "");
-	}
-	static string replace(string s, regex r, string rep)
-	{
-		return regex_replace(s, r, rep);
-	}
+	static char* tochararray(string s);
+	static string tostring(char* c);
 
 	//TODO replaceif
 	//TODO keepif
@@ -176,6 +157,12 @@ public:
 		istringstream* s = sstream();
 		*s >> x;
 		return x;
+	}
+	template<>
+	char* read<char*>()
+	{
+		throw new exception("Cannot use read() on char*.  Use readsome() instead.");
+		return NULL;
 	}
 
 	string readline();

@@ -12,6 +12,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="general.cpp" />
+    <ClCompile Include="math.cpp" />
     <ClCompile Include="reader.cpp" />
     <ClCompile Include="string.cpp" />
   </ItemGroup>

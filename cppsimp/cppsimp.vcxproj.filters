@@ -7,5 +7,6 @@
     <ClCompile Include="general.cpp" />
     <ClCompile Include="reader.cpp" />
     <ClCompile Include="string.cpp" />
+    <ClCompile Include="math.cpp" />
   </ItemGroup>
 </Project>
